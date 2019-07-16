@@ -1,4 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+// import Tick from "./components/Tick"
+import A from "./components/Test"
 
-ReactDOM.render(<h1>Hello World <span>span元素</span></h1>, document.getElementById('root'));
+// ReactDOM.render(<Tick number={10} />, document.getElementById('root'));
+
+ReactDOM.render(<A/>, document.getElementById('root'))
