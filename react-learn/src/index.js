@@ -1,4 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Comp from './Comp'
 
-ReactDOM.render(<h1>Hello World <span>span元素</span></h1>, document.getElementById('root'));
+ReactDOM.render(<Comp/>, document.getElementById('root'));
