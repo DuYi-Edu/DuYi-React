@@ -1,4 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PagerTest from "./components/PagerTest"
 
-ReactDOM.render(<h1>Hello World <span>span元素</span></h1>, document.getElementById('root'));
+ReactDOM.render(<PagerTest/>, document.getElementById('root'));
