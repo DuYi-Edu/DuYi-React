@@ -1,4 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import TickControl from "./TickControl";
 
-ReactDOM.render(<h1>Hello World <span>span元素</span></h1>, document.getElementById('root'));
+const tc = new TickControl();
+console.log(tc);
+
+ReactDOM.render(<TickControl/>, document.getElementById("root"));
