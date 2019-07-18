@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
+import FormTest from "./components/FormTest"
 
-export default function App() {
-    return (
-        <div>
-            
-        </div>
-    )
+export default class App extends Component {
+
+
+    render() {
+        return <FormTest />
+    }
 }
