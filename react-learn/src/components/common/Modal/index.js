@@ -1,22 +1,30 @@
 import React from 'react'
 import "./index.css"
+import types from "../../../utils/commonTypes"
+import PropTypes from "prop-types"
+
+Modal.defaultProps = { //默认属性
+    bg: "rgba(0,0,0,.5)"
+};
+
+Modal.propTypes = {
+    children: types.children,
+    bg: PropTypes.string,
+    onClose: PropTypes.func
+}
 
 export default function Modal(props) {
-    var defaultProps = { //默认属性
-        bg: "rgba(0,0,0,.5)"
-    };
-    var datas = Object.assign({}, defaultProps, props);
 
     return (
         <div onClick={e => {
             if (e.target.className === "modal") {
-                datas.onClose();
+                props.onClose();
             }
         }} className="modal" style={{
-            background: datas.bg
+            background: props.bg
         }}>
             <div className="modal-center">
-                {datas.children}
+                {props.children}
             </div>
         </div>
     )
