@@ -7,45 +7,26 @@ const types = {
     onChangeA: PropTypes.func
 }
 
-
-class ChildA extends Component {
-    static contextTypes = types;
-
-    static childContextTypes = {
-        a: PropTypes.number,
-        c: PropTypes.string
-    }
-
-    getChildContext() {
-        return {
-            a: 789,
-            c: "hello"
-        }
-    }
-
-    render() {
-        return <div>
-            <h1>ChildA</h1>
-            <h2>a:{this.context.a}，b:{this.context.b}</h2>
-            <ChildB />
-        </div>
-    }
+function ChildA(props, context) {
+    return <div>
+        <h1>ChildA</h1>
+        <h2>a:{context.a}，b:{context.b}</h2>
+        <ChildB />
+    </div>
 }
+
+ChildA.contextTypes = types;
 
 class ChildB extends React.Component {
 
     /**
      * 声明需要使用哪些上下文中的数据
      */
-    static contextTypes = {
-        ...types,
-        c: PropTypes.string
-    }
+    static contextTypes = types
 
     render() {
         return <p>
             ChildB，来自于上下文的数据：a: {this.context.a}, b:{this.context.b}
-            ，c: {this.context.c}
             <button onClick={() => {
                 this.context.onChangeA(this.context.a + 2);
             }}>子组件的按钮，a+2</button>
