@@ -1,0 +1,9 @@
+.point{
+    background: lightblue;
+    width: 500px;
+    height: 500px;
+    border: 2px solid;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
