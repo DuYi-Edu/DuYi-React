@@ -29,28 +29,22 @@ class CompA extends Component {
 
 export default class App extends Component {
     state = {
-        isVisible: false
+        arr: [<CompA key={1} />, <CompA key={2} />],
+        nextId: 3
     }
     render() {
-        if (this.state.isVisible) {
-            return <div>
-                <h1>标题</h1>
-                <CompA key="compa" />
-                <button onClick={() => {
-                    this.setState({
-                        isVisible: !this.state.isVisible
-                    })
-                }}>显示/隐藏</button>
-            </div>
-        }
         return (
             <div>
-                <CompA key="compa" />
+                {this.state.arr}
                 <button onClick={() => {
                     this.setState({
-                        isVisible: !this.state.isVisible
+                        arr: [
+                            <CompA key={this.state.nextId} />,
+                            ...this.state.arr
+                        ],
+                        nextId: this.state.nextId + 1
                     })
-                }}>显示/隐藏</button>
+                }}>添加一项</button>
             </div>
         )
     }
