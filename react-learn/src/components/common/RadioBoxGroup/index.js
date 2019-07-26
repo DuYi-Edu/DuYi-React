@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import types from "../../../utils/commonTypes"
 import PropTypes from "prop-types"
 import withDataGroup from "../hoc/withDataGroup";
 
-class Radio extends Component {
+class Radio extends PureComponent {
     static propTypes = {
         name: PropTypes.string.isRequired,
         info: types.singleData.isRequired, //当前单选框的value

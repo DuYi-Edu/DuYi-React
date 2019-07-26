@@ -15,6 +15,11 @@ export default class Test extends Component {
         })
     }
 
+    handleChange = val => {
+        this.setState({
+            value: val
+        })
+    }
 
     render() {
         return (
@@ -22,11 +27,7 @@ export default class Test extends Component {
                 <RadioBoxGroup
                     name="loves"
                     {...this.state}
-                    onChange={val => {
-                        this.setState({
-                            value: val
-                        })
-                    }}
+                    onChange={this.handleChange}
                 />
             </div>
         )
