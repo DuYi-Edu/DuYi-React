@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState } from 'react'
 
 class Test extends React.PureComponent {
 
@@ -13,16 +13,14 @@ class Test extends React.PureComponent {
 
 function Parent() {
     console.log("Parent Render")
-    const [txt, setTxt] = useState(1)
+    const [txt, setTxt] = useState(123)
     const [n, setN] = useState(0)
-    const handleClick = useCallback(() => {
-        setTxt(txt + 1)
-    }, [txt])
-
     return (
         <div>
             {/* 函数的地址每次渲染都发生了变化，导致了子组件跟着重新渲染，若子组件是经过优化的组件，则可能导致优化失效 */}
-            <Test text={txt} onClick={handleClick} />
+            <Test text={txt} onClick={() => {
+                setTxt(Math.random());
+            }} />
             <input type="number"
                 value={n}
                 onChange={e => {
