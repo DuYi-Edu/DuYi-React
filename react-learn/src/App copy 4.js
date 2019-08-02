@@ -19,7 +19,7 @@ function C() {
     </h1>
 }
 
-function D() {
+function D(){
     return <span>D组件</span>
 }
 
@@ -27,15 +27,9 @@ export default function App() {
     return (
         <Router>
             <Switch>
+                {/* /a/b */}
+                <Route path="/a" exact component={A} />
                 <Route path="/a/b" component={B} />
-                <Route path="/a" exact component={A}>
-                    {() => {
-                        return <div>
-                            <h1 style={{ color: "red" }}>必定会看到的内容</h1>
-                            <p>adfasdfasdf</p>
-                        </div>
-                    }}
-                </Route>
                 <Route component={C} />
             </Switch>
         </Router>
