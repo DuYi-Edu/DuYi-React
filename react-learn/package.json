@@ -5,6 +5,7 @@
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1"
   },
   "scripts": {
@@ -28,5 +29,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy":"http://api.duyiedu.com"
+  "proxy": "http://api.duyiedu.com"
 }
