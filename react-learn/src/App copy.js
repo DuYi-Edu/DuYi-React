@@ -1,37 +1,38 @@
 import React from 'react'
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
-//   /a
-function A() {
-    return <h1>组件A</h1>
+function A(props) {
+    return <div>
+        <p>组件A</p>
+        <button onClick={() => {
+            props.history.push("/b", "状态数据");
+        }}>跳转到/b</button>
+    </div>
 }
 
-//   /b
-function B() {
-    return <h1>组件B</h1>
+function B(props) {
+    return <div>
+        <p>组件B</p>
+        <p>
+            获取状态数据：{props.history.location.state}
+        </p>
+        <button onClick={() => {
+            props.history.push("/a");
+        }}>跳转到/a</button>
+    </div>
 }
 
-//  /c
-function C() {
-    return <h1>组件C</h1>
+function NotFound() {
+    return <h1>找不到页面</h1>
 }
-
-// class Route extends React.Component {
-//     render() {
-//         if (是否匹配(this.props.path)) {
-//             const Comp = this.props.component;
-//             return <Comp />
-//         }
-//         return null;
-//     }
-// }
-
 export default function App() {
     return (
         <Router>
-            <Route path="/a" component={A} />
-            <Route path="/b" component={B} />
-            <Route path="/c" component={C} />
+            <Switch>
+                <Route path="/a" component={A} />
+                <Route path="/b" component={B} />
+                <Route component={NotFound} />
+            </Switch>
         </Router>
     )
 }

@@ -1,37 +1,35 @@
 import React from 'react'
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import qs from "query-string";
 
-//   /a
-function A() {
-    return <h1>组件A</h1>
+function A(props) {
+    console.log(props.location)
+    var query = qs.parse(props.location.search)
+    var hash = qs.parse(props.location.hash);
+    return <div>
+        <p>组件A</p>
+        <p>
+            访问地址：{props.location.pathname}
+        </p>
+        <p>
+            地址参数：a:{query.a}, b:{query.b}, c:{query.c}
+        </p>
+        <p>
+            hash: d:{hash.d}, f:{hash.f}
+        </p>
+    </div>
 }
 
-//   /a/b
-function B() {
-    return <h1>组件B</h1>
+function NotFound() {
+    return <h1>找不到页面</h1>
 }
-
-// 任意路径
-function C() {
-    return <h1>组件C</h1>
-}
-
-// class Route extends React.Component {
-//     render() {
-//         if (是否匹配(this.props.path)) {
-//             const Comp = this.props.component;
-//             return <Comp />
-//         }
-//         return null;
-//     }
-// }
-
 export default function App() {
     return (
         <Router>
-            <Route path="/a" component={A} />
-            <Route path="/a/b" component={B} />
-            <Route component={C} />
+            <Switch>
+                <Route path="/a" exact component={A} />
+                <Route component={NotFound} />
+            </Switch>
         </Router>
     )
 }

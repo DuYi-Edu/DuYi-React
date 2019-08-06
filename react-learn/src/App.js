@@ -1,42 +1,43 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch, withRouter } from "react-router-dom"
 
-//   /a
-function A() {
-    return <h1>组件A</h1>
+const AWrapper = withRouter(A);
+
+// function withRouter(Comp) {
+//     return function routerWrapper(props) {
+//         //获取上下文中的信息
+//         return <Comp {...props} history={上下文中的history} />
+//     }
+// }
+
+function News(props) {
+    return <div>
+        <h1>新闻列表</h1>
+        <AWrapper />
+    </div>
 }
 
-//   /a/b
-function B() {
-    return <h1>组件B</h1>
+function A(props) {
+    console.log(props)
+    return <button onClick={() => {
+        props.history.push("/");
+    }}>点击返回</button>
 }
 
-// 任意路径
-function C() {
-    return <h1>
-        找不到页面
-        <Route path="/abc" exact component={D} />
-    </h1>
+function Index() {
+    return <h1>首页</h1>
 }
 
-function D() {
-    return <span>D组件</span>
+function NotFound() {
+    return <h1>找不到页面</h1>
 }
-
 export default function App() {
     return (
         <Router>
             <Switch>
-                <Route path="/a/b" component={B} />
-                <Route path="/a" exact component={A}>
-                    {() => {
-                        return <div>
-                            <h1 style={{ color: "red" }}>必定会看到的内容</h1>
-                            <p>adfasdfasdf</p>
-                        </div>
-                    }}
-                </Route>
-                <Route component={C} />
+                <Route path="/news" component={News} />
+                <Route path="/" exact component={Index} />
+                <Route component={NotFound} />
             </Switch>
         </Router>
     )
