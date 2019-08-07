@@ -1,13 +1,12 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
-import  routeConfig from "./RouteConfig"
 
-function User({ match }) {
+function User({match}) {
     return <div>
         <h1>User组件固定的区域</h1>
         <p>
-            <Link to={routeConfig.user.update}>用户信息</Link>
-            <Link to={routeConfig.user.pay.root}>充值</Link>
+            <Link to={`${match.url}/update`}>用户信息</Link>
+            <Link to={`${match.url}/pay`}>充值</Link>
         </p>
         <div style={{
             width: 500,
@@ -17,8 +16,8 @@ function User({ match }) {
             margin: "0 auto"
         }}>
             {/* User组件变化的区域：根据地址的不同发生变化 */}
-            <Route path={routeConfig.user.update} component={UserUpdate} />
-            <Route path={routeConfig.user.pay.root} component={UserPay} />
+            <Route path={`${match.url}/update`} component={UserUpdate} />
+            <Route path={`${match.url}/pay`} component={UserPay} />
         </div>
 
     </div>
@@ -35,7 +34,7 @@ function UserPay() {
 export default function App() {
     return (
         <Router>
-            <Route path={routeConfig.user.root} component={User} />
+            <Route path="/u" component={User} />
             {/* 其他组件 */}
         </Router>
     )
