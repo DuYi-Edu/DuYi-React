@@ -1,0 +1,7 @@
+.fade-exit-done, .fade-enter, .fade-exit-active, .fade-appear{
+    opacity: 0;
+}
+
+.fade-enter-active, .fade-appear-active{
+    opacity: 1;
+}
