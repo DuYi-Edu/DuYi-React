@@ -1,0 +1,13 @@
+.exit-active{
+    transition: 5s;
+    opacity: 0;
+}
+
+.enter,.appear{
+    opacity: 0;
+}
+
+.enter-active, .appear-active{
+    transition: 5s;
+    opacity: 1;
+}
