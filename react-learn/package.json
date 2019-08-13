@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "animate.css": "^3.7.2",
     "query-string": "^6.8.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -31,5 +32,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://api.duyiedu.com"
+  "proxy": "http://api.duyiedu.com",
+  "devDependencies": {
+    "typescript": "^3.5.3"
+  }
 }
