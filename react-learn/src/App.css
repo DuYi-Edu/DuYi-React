@@ -1,0 +1,20 @@
+.nav a{
+    color: #000;
+    text-decoration: none;
+    font-size: 2em;
+    margin: 30px;
+}
+
+.nav a.active{
+    color: #f40;
+}
+
+.container{
+    margin: 30px;
+}
+
+.container textarea{
+    width: 500px;
+    height: 200px;
+    font-size: 2em;
+}
