@@ -28,14 +28,13 @@ export default class Router extends Component {
     }
     
 
-
-    ctxValue = {} //上下文中的对象
-
     render() {
-        this.ctxValue.history = this.props.history;//该对象不变
-        this.ctxValue.location = this.state.location;
-        this.ctxValue.match = matchPath("/", this.state.location.pathname);
-        return <ctx.Provider value={this.ctxValue}>
+        const ctxValue = {
+            history: this.props.history,
+            location: this.state.location,
+            match: matchPath("/", this.state.location.pathname)
+        }
+        return <ctx.Provider value={ctxValue}>
             {this.props.children}
         </ctx.Provider>
     }
