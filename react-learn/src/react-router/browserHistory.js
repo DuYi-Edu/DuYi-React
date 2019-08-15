@@ -4,14 +4,14 @@ window.h = createBrowserHistory({
     basename: "/news",
     forceRefresh: false,
     keyLength: 4,
-    getUserConfirmation: (msg, callback) => {
-        callback(window.confirm(msg));
-    }
+    // getUserConfirmation: (msg, callback) => {
+    //     callback(window.confirm(msg));
+    // }
 })
 
-window.unblock = window.h.block((location, action) => {
-    return `你真的要进入${location.pathname}吗？${action}`;
-});
+// window.unblock = window.h.block((location, action) => {
+//     return `你真的要进入${location.pathname}吗？${action}`;
+// });
 
 // window.unListen = window.h.listen((location, action) => {
 //     console.log(location)
