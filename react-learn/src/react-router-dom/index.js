@@ -1,2 +1,2 @@
 export { default as BrowserRouter } from "./BrowserRouter"
-export { Route } from "../react-router"
+export { Route, Switch } from "../react-router"
