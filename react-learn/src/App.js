@@ -1,21 +1,9 @@
 import React from 'react'
-import { BrowserRouter, Route, withRouter } from "./react-router-dom"
-
-function Comp(props) {
-    return <div>
-        {props.text}
-        <button onClick={() => {
-            props.history.push("/page2")
-        }}>跳转到page2</button>
-    </div>
-}
-
-const CompWithRouter = withRouter(Comp);
+import { BrowserRouter, Route, Link, NavLink } from "./react-router-dom"
 
 function Page1() {
     return <div>
         <h1>Page1</h1>
-        <CompWithRouter text="abc" />
     </div>
 }
 
@@ -28,6 +16,17 @@ export default function App() {
         <BrowserRouter>
             <Route path="/page1" component={Page1} />
             <Route path="/page2" component={Page2} />
+            <ul>
+                <li>
+                    <Link to={{
+                        pathname: "/page1",
+                        search: "?a=1&b=2"
+                    }}>跳转到页面1</Link>
+                </li>
+                <li>
+                    <NavLink to="/page2">跳转到页面2</NavLink>
+                </li>
+            </ul>
         </BrowserRouter>
     )
 }

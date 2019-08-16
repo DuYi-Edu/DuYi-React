@@ -108,7 +108,14 @@ export default function createBrowserHistory(options = {}) {
     }
 
     function createHref(location) {
-        return basename + location.pathname + location.search + location.hash;
+        let { pathname = "/", search = "", hash = "" } = location;
+        if (search.charAt(0) === "?" && search.length === 1) {
+            search = "";
+        }
+        if (hash.charAt(0) === "#" && hash.length === 1) {
+            hash = "";
+        }
+        return basename + pathname + search + hash;
     }
 
     const history = {
@@ -143,10 +150,10 @@ function handlePathAndState(path, state, basename) {
     else if (typeof path === "object") {
         let pathResult = basename + path.pathname;
         let { search = "", hash = "" } = path;
-        if (search.charAt(0) !== "?") {
+        if (search.charAt(0) !== "?" && search.length > 0) {
             search = "?" + search;
         }
-        if (hash.charAt(0) !== "#") {
+        if (hash.charAt(0) !== "#" && hash.length > 0) {
             hash = "#" + hash;
         }
         pathResult += search;
