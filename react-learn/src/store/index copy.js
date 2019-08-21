@@ -1,4 +1,4 @@
-import { createStore, bindActionCreators } from "../redux";
+import { createStore, bindActionCreators } from "redux";
 import reducer from "./reducer"
 import { createAddUserAction, createDeleteUserAction } from "./action/usersAction"
 
@@ -11,7 +11,7 @@ const actionCreators = {
 }
 
 const actions = bindActionCreators(actionCreators, store.dispatch)
-console.log(actions)
+
 store.subscribe(() => {
     console.log("监听器1", store.getState());
 })
