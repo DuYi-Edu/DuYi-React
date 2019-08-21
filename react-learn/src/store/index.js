@@ -1,14 +1,13 @@
-import { createStore } from "redux";
+import { createStore } from "../redux";
 import reducer from "./reducer"
 import { createAddUserAction, createDeleteUserAction } from "./action/usersAction"
 
 
 const store = createStore(reducer);
 
-console.log(store)
 
 const unListen = store.subscribe(() => {
-    console.log(store.getState());
+    console.log("监听器1", store.getState());
 })
 
 store.dispatch(createAddUserAction({
