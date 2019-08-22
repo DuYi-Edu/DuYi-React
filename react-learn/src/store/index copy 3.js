@@ -36,10 +36,10 @@ function logger2(store) {
 }
 
 //应用中间件，方式1：
-const store = createStore(reducer, applyMiddleware(logger1, logger2));
+// const store = createStore(reducer, applyMiddleware(logger1, logger2));
 
 //方式2：
-// const store = applyMiddleware(logger1, logger2)(createStore)(reducer)
+const store = applyMiddleware(logger1, logger2)(createStore)(reducer)
 
 const actionCreators = {
     addUser: createAddUserAction,
