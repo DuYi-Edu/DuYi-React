@@ -23,7 +23,6 @@ export default function (reducer, defaultState) {
             throw new TypeError("action must has a property of type");
         }
         currentState = currentReducer(currentState, action)
-
         //运行所有的订阅者（监听器）
         for (const listener of listeners) {
             listener();
