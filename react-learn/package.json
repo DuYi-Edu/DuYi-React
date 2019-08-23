@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "is-promise": "^2.1.0",
+    "loadash": "^1.0.0",
     "query-string": "^6.8.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -10,6 +12,7 @@
     "react-scripts": "3.0.1",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
+    "redux-promise": "^0.6.0",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
