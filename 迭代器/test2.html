@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //可无限迭代的随机数
+        var iterator = {
+            next() {
+                return { //当前这一次迭代到的数据
+                    value: Math.random(),
+                    done: false
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

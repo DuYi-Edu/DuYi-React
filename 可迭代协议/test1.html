@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //obj满足可迭代协议
+        //obj可被迭代
+        var obj = {
+            [Symbol.iterator]: function() {
+                var total = 3;
+                i = 1;
+                return {
+                    next() {
+                        var obj = { //当前这一次迭代到的数据
+                            value: i > total ? undefined : Math.random(),
+                            done: i > total
+                        }
+                        i++;
+                        return obj;
+                    }
+                }
+            }
+        }
+
+        //模拟for-of循环
+        var iterator = obj[Symbol.iterator]();
+        var result = iterator.next();
+        while (!result.done) {
+            //有数据
+            const item = result.value;
+            console.log(item); //执行循环体
+            result = iterator.next();
+        }
+
+        for (const item of obj) {
+            console.log(item)
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //iterator是一个迭代器
+        var iterator = {
+            total: 3, //可迭代3次
+            i: 1, //当前的迭代次数
+            next() {
+                var obj = { //当前这一次迭代到的数据
+                    value: this.i > this.total ? undefined : Math.random(),
+                    done: this.i > this.total
+                }
+                this.i++;
+                return obj;
+            }
+        }
+
+        //一个一个迭代，直到不能迭代位置
+        var next = iterator.next();
+        while (!next.done) {
+            //若当前迭代的数据不是迭代器的结束
+            //如果当前还有数据
+            console.log(next.value);
+            next = iterator.next();
+        }
+    </script>
+</body>
+
+</html>

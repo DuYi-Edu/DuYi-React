@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //iterator是一个迭代器
+        var iterator = {
+            total: 3, //可迭代3次
+            i: 1, //当前的迭代次数
+            next() {
+                var obj = { //当前这一次迭代到的数据
+                    value: this.i > this.total ? undefined : Math.random(),
+                    done: this.i > this.total
+                }
+                this.i++;
+                return obj;
+            }
+        }
+    </script>
+</body>
+
+</html>

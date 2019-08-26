@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //要输出斐波拉契数列的前N位
+
+        //一个无限的斐波拉契数列 1 1 2 3 5 8 13 21
+        var iterator = {
+            a: 1,
+            b: 1,
+            curIndex: 1, //当前取到斐波拉契的第几位了，从1开始
+            next() {
+                if (this.curIndex === 1 || this.curIndex === 2) {
+                    this.curIndex++;
+                    return {
+                        value: 1,
+                        done: false
+                    };
+                }
+                var c = this.a + this.b;
+                this.curIndex++;
+                this.a = this.b;
+                this.b = c;
+                return {
+                    value: c,
+                    done: false
+                };
+            }
+        }
+
+        for (let i = 0; i < 100; i++) {
+            console.log(iterator.next().value);
+        }
+    </script>
+</body>
+
+</html>

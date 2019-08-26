@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function createIterator(total) {
+            i = 1;
+            return {
+                next() {
+                    var obj = { //当前这一次迭代到的数据
+                        value: i > total ? undefined : Math.random(),
+                        done: i > total
+                    }
+                    i++;
+                    return obj;
+                }
+            }
+        }
+
+        var iterator = createIterator(5)
+        var next = iterator.next();
+        while (!next.done) {
+            //若当前迭代的数据不是迭代器的结束
+            //如果当前还有数据
+            console.log(next.value);
+            next = iterator.next();
+        }
+    </script>
+</body>
+
+</html>
