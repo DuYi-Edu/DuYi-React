@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function asyncGetData() {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve("成哥")
+                }, 2000);
+            })
+        }
+
+        function* task() {
+            console.log("开始获取数据....");
+            const data = yield asyncGetData()
+            console.log("获取到数据：", data);
+            const data2 = yield asyncGetData();
+            console.log("又获取到了数据：", data2);
+            const data3 = yield 1;
+            console.log("又获取到了数据：", data3)
+        }
+
+        /**
+         * 通用函数：运行一个生成器任务
+         */
+        function run(generatorFunction) {
+            const generator = generatorFunction(); //得到一个生成器
+            next();
+
+            /**
+             * 封装了generator的next方法，进行下一次迭代
+             */
+            function next(nextValue) {
+                const result = generator.next(nextValue);
+                if (result.done) {
+                    //迭代结束了
+                    return; 
+                }
+                const value = result.value; //拿到迭代的数据
+                if (typeof value.then === "function") {
+                    //迭代的数据是一个Promise
+                    value.then(data => next(data));
+                } else {
+                    next(result.value);
+                }
+            }
+        }
+
+        run(task);
+    </script>
+</body>
+
+</html>

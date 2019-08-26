@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //下面的函数是一个生成器函数，用于创建生成器
+        function* createGenerator() {
+            console.log("生成器函数的函数体 - 开始");
+            yield 1; // {value:1, done:false}
+            return;
+            console.log("生成器函数的函数体 - 运行1");
+            yield 2;
+            console.log("生成器函数的函数体 - 运行2");
+            yield 3;
+            console.log("生成器函数的函数体 - 运行3");
+            return "结束";
+        }
+
+        var generator = createGenerator(); //调用后，一定得到一个生成器
+
+
+    </script>
+</body>
+
+</html>
