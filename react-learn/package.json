@@ -3,24 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
-    "animate.css": "^3.7.2",
-=======
->>>>>>> 8-4.案例.管理学生数据
     "query-string": "^6.8.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
-<<<<<<< HEAD
-    "react-transition-group": "^4.2.2",
-    "redux": "^4.0.4",
-    "uuid": "^3.3.2"
-=======
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
->>>>>>> 8-4.案例.管理学生数据
   },
   "scripts": {
     "start": "react-scripts start",
