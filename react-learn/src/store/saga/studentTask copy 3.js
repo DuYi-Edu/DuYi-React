@@ -1,5 +1,5 @@
 import { actionTypes, setIsLoading, setStudentsAndTotal } from "../action/student/searchResult"
-import { takeEvery, put, cps, select } from "redux-saga/effects"
+import { takeEvery, put, call, select } from "redux-saga/effects"
 
 /**
  * 回调模式的异步
@@ -21,7 +21,7 @@ function mockStudents(condition, callback) {
         else {
             callback(new Error("出错了！！！1"), null);
         }
-    }, 1000);
+    }, 3000);
 }
 
 function* fetchStudents() {
@@ -29,16 +29,9 @@ function* fetchStudents() {
     yield put(setIsLoading(true))
     const condition = yield select(state => state.students.condition);
     //使用call指令，按照当前仓库中的条件
-    try {
-        const resp = yield cps(mockStudents, condition)
-        yield put(setStudentsAndTotal(resp.datas, resp.cont))
-    }
-    catch (err) {
-        console.log(err.message);
-    }
-    finally {
-        yield put(setIsLoading(false));
-    }
+    const resp = yield call(mockStudents, condition)
+    yield put(setStudentsAndTotal(resp.datas, resp.cont))
+    yield put(setIsLoading(false));
 }
 
 export default function* () {
