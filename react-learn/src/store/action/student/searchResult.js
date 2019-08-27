@@ -1,5 +1,3 @@
-import { searchStudents } from "../../../services/student"
-
 export const actionTypes = {
     //设置学生查询结果数组和总数
     setStudentsAndTotal: Symbol("setStudentsAndTotal"),
@@ -31,18 +29,5 @@ export function setIsLoading(isLoading) {
     return {
         type: actionTypes.setIsLoading,
         payload: isLoading
-    }
-}
-
-/**
- * 根据当前仓库中的查询条件，查询学生
- */
-export function fetchStudents() {
-    return async function (dispatch, getState) {
-        dispatch(setIsLoading(true));
-        const condition = getState().students.condition;
-        const resp = await searchStudents(condition)
-        dispatch(setStudentsAndTotal(resp.datas, resp.cont));
-        dispatch(setIsLoading(false));
     }
 }
