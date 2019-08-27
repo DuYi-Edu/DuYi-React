@@ -1,4 +1,4 @@
-import { fork, take, delay, put, race, call } from "redux-saga/effects"
+import { fork, take, delay, put, cancel, cancelled } from "redux-saga/effects"
 import { actionTypes, increase } from "../action/counter"
 
 /**
@@ -8,15 +8,21 @@ import { actionTypes, increase } from "../action/counter"
 function* autoTask() {
     while (true) {
         yield take(actionTypes.autoIncrease); //只监听autoIncrease
-        yield race({
-            autoIncrease: call(function* () {
+        const task = yield fork(function* () {
+            try {
                 while (true) {
                     yield delay(2000);
                     yield put(increase());
                 }
-            }),
-            cancel: take(actionTypes.stopAutoIncrease)
+            }
+            finally {
+                if (yield cancelled()) {
+                    console.log("自动增加任务被取消掉了！！！")
+                }
+            }
         })
+        yield take(actionTypes.stopAutoIncrease); //转而监听stopAutoIncrease
+        yield cancel(task);
     }
 }
 
