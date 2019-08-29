@@ -1,6 +1,6 @@
 import React from "react"
 import StudentSearchBar from "./StudentSearchBar"
-import { connect } from "../react-redux"
+import { connect, connectAdvanced } from "react-redux"
 import { change as changeCondition } from "../store/action/student/searchCondition"
 import { fetchStudents } from "../store/action/student/searchResult"
 import StudentTable from "./StudentTable"
@@ -33,23 +33,21 @@ mapStateToProps = state => ({
 const Table = connect(mapStateToProps)(StudentTable)
 
 //连接 Pager
-mapStateToProps = state => ({
-    current: state.students.condition.page,
-    total: state.students.result.total,
-    panelNumber: 5,
-    limit: state.students.condition.limit
-})
-mapDispatchToProps = dispatch => ({
-    onPageChange: (newPage) => {
-        //重新设置条件
-        dispatch(changeCondition({
-            page: newPage
-        }))
-        //触发获取学生数据的action
-        dispatch(fetchStudents());
+function selectorFactory(dispatch) {
+    return function (state, ownProps) {
+        return {
+            current: state.students.condition.page,
+            total: state.students.result.total,
+            limit: state.students.condition.limit,
+            panelNumber: 5,
+            onPageChange: (newPage) => {
+                dispatch(changeCondition({ page: newPage }))
+                dispatch(fetchStudents());
+            }
+        }
     }
-})
-const PagerTemp = connect(mapStateToProps, mapDispatchToProps)(Pager)
+}
+const PagerTemp = connectAdvanced(selectorFactory)(Pager)
 
 //连接 Loading
 mapStateToProps = state => ({
