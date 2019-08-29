@@ -14,5 +14,4 @@ function* asyncDecrease() {
 export default function* () {
     yield takeEvery(actionTypes.asyncIncrease, asyncIncrease)
     yield takeEvery(actionTypes.asyncDecrease, asyncDecrease)
-    console.log("正在监听asyncIncrease、asyncDecrease")
 }

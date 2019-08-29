@@ -10,6 +10,7 @@ const sagaMid = createSagaMiddleware(); //创建一个saga的中间件
 const store = createStore(reducer,
     applyMiddleware(sagaMid, logger)
 )
+console.log(store.getState())
 
 sagaMid.run(rootSaga); //启动saga任务
 
