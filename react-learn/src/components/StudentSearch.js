@@ -1,6 +1,6 @@
 import React from "react"
 import StudentSearchBar from "./StudentSearchBar"
-import { connect } from "react-redux"
+import { connect } from "../react-redux"
 import { change as changeCondition } from "../store/action/student/searchCondition"
 import { fetchStudents } from "../store/action/student/searchResult"
 import StudentTable from "./StudentTable"
@@ -10,10 +10,8 @@ import Loading from "./Loading"
 
 //连接 StudentSearchBar
 let mapStateToProps = state => ({
-    defaultValue: {
-        key: state.students.condition.key,
-        sex: state.students.condition.sex
-    }
+    key: state.students.condition.key,
+    sex: state.students.condition.sex
 })
 
 let mapDispatchToProps = dispatch => ({

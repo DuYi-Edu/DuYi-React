@@ -8,7 +8,10 @@ export default class StudentSearchBar extends Component {
             key: "",
             sex: -1
         };
-        this.state = Object.assign({}, def, this.props.defaultValue);
+        this.state = Object.assign({}, def, {
+            key: props.key,
+            sex: props.sex
+        });
     }
 
     handleRadioChange = e => {
@@ -19,7 +22,7 @@ export default class StudentSearchBar extends Component {
 
     handleSearch = () => {
         //抛出事件
-        if(this.props.onSearch){
+        if (this.props.onSearch) {
             this.props.onSearch(this.state);
         }
     }
