@@ -1,17 +1,10 @@
-import { delay, put, select } from "../../redux-saga/effects"
-import { increase } from "../action/counter"
-
-
+import { all } from "../../redux-saga/effects"
+import increase from "./increase"
+import decrease from "./decrease"
 /**
 * saga任务
 */
 export default function* () {
-    while (true) {
-        yield delay(3000);
-        yield put(increase())
-
-        const state = yield select();
-        console.log(state);
-    }
-
+    yield all([increase(), decrease()])
+    console.log("saga 结束了")
 }

@@ -13,19 +13,27 @@ import runEffect from "./runEffect"
 export default function (env, generatorFunc, ...args) {
     const iterator = generatorFunc(...args);
     if (isGenerator(iterator)) {
-        //不断调用next，直到迭代结束
-        next();
+        return proc(env, iterator);
     }
     else {
         console.log("一个普通函数")
     }
+}
 
+/**
+ * 执行一个generator（iterator）
+ */
+export function proc(env, iterator) {
+    var cbObj = {//回调函数对象
+        callback: null
+    }
+    next(); //启动任务
     /**
-     * 
-     * @param {*} nextValue 正常调用iterator.next时，传递的值
-     * @param {*} err 错误对象
-     * @param {boolean} isOver 是否结束
-     */
+         * 
+         * @param {*} nextValue 正常调用iterator.next时，传递的值
+         * @param {*} err 错误对象
+         * @param {boolean} isOver 是否结束
+         */
     function next(nextValue, err, isOver) {
         let result; //记录迭代的结果 {value: xxx, done: false}
         if (err) {
@@ -33,6 +41,8 @@ export default function (env, generatorFunc, ...args) {
         }
         else if (isOver) {
             result = iterator.return(); //结束整个迭代
+            //调用一个回调函数
+            cbObj.callback && cbObj.callback();
         }
         else {
             result = iterator.next(nextValue);
@@ -41,6 +51,7 @@ export default function (env, generatorFunc, ...args) {
         const { value, done } = result;
         if (done) {
             //迭代结束了
+            cbObj.callback && cbObj.callback();
             return;
         }
 
@@ -60,5 +71,5 @@ export default function (env, generatorFunc, ...args) {
         }
     }
 
-    return new Task();
+    return new Task(next, cbObj);
 }

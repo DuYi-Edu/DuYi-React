@@ -6,7 +6,11 @@
 export const effectTypes = {
     CALL: "CALL",
     PUT: "PUT",
-    SELECT: "SELECT"
+    SELECT: "SELECT",
+    TAKE: "TAKE",
+    FORK: "FORK",
+    CANCEL: "CANCEL",
+    ALL: "ALL",
 }
 
 /**
