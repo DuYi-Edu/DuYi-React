@@ -2,6 +2,7 @@ import { Task } from "./Task";
 import isGenerator from "is-generator";
 import { isEffect } from "./effectHelper"
 import isPromise from "is-promise"
+import runEffect from "./runEffect"
 
 /**
  * 开启一个新任务
@@ -46,7 +47,7 @@ export default function (env, generatorFunc, ...args) {
         //没有结束
         if (isEffect(value)) {
             //情况1：是一个effect对象
-            console.log("是一个effect")
+            runEffect(env, value, next)
         }
         else if (isPromise(value)) {
             //情况2：value是一个promise

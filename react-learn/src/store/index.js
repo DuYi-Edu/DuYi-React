@@ -11,6 +11,6 @@ const store = createStore(reducer,
     applyMiddleware(sagaMid, logger)
 )
 
-sagaMid.run(rootSaga, 1, 2, 3); //启动saga任务
+sagaMid.run(rootSaga); //启动saga任务
 
 export default store;

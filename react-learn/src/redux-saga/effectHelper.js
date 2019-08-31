@@ -5,9 +5,8 @@
  */
 export const effectTypes = {
     CALL: "CALL",
-    TAKE: "TAKE",
-    FORK: "FORK",
-    ALL: "ALL"
+    PUT: "PUT",
+    SELECT: "SELECT"
 }
 
 /**
@@ -22,7 +21,7 @@ const specialEffectName = "@@redux-saga/IO"
  */
 export function createEffect(type, payload) {
     //验证type值
-    if (!Object.values(effectTypes).incluse(type)) {
+    if (!Object.values(effectTypes).includes(type)) {
         throw new TypeError("这是一个无效的type值");
     }
     return {
