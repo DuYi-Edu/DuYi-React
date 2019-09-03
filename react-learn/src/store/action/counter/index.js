@@ -1,22 +1,16 @@
-export const actionTypes = {
-    increase: Symbol("increase"),
-    decrease: Symbol("decrease"),
-    asyncIncrease: Symbol("async-increase"), //异步增加
-    asyncDecrease: Symbol("async-decrease")
-}
+import { createActions, handleActions, combineActions } from "redux-actions"
 
-export function increase() {
-    return { type: actionTypes.increase }
-}
+const actions = createActions({
+    INCREASE: () => 1,
+    DECREASE: () => -1,
+    ASYNC_INCREASE: null,
+    ASYNC_DECREASE: null,
+    ADD: number => number
+});
 
-export function decrease() {
-    return { type: actionTypes.decrease }
-}
+export const { increase, decrease, asyncIncrease, asyncDecrease, add } = actions
 
-export function asyncIncrease() {
-    return { type: actionTypes.asyncIncrease }
-}
 
-export function asyncDecrease() {
-    return { type: actionTypes.asyncDecrease }
-}
+export default handleActions({
+    [combineActions(increase, decrease, add)]: (state, { payload }) => state + payload
+}, 0)

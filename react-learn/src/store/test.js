@@ -1,9 +1,13 @@
 import store from "./index"
-import { increase, decrease, asyncIncrease, asyncDecrease } from "./action/counter"
+import { increase, decrease, asyncIncrease, asyncDecrease, add } from "./action/counter"
 import { fetchStudents } from './action/student/searchResult'
 
 window.fetchStudents = function () {
     store.dispatch(fetchStudents());
+}
+
+window.add = function (n) {
+    store.dispatch(add(n));
 }
 
 window.increase = function () {

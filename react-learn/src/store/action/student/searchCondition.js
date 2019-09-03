@@ -1,18 +1,17 @@
-/**
- * 对学生查询条件改变的action的类型
- */
-export const actionTypes = {
-    change: Symbol("change")
-}
+import { createActions, handleActions } from "redux-actions"
 
-/**
- * action creator
- * 根据新的查询条件，产生一个action
- * @param {*} newCondition 
- */
-export function change(newCondition) {
-    return {
-        type: actionTypes.change,
-        payload: newCondition
-    }
-}
+export const { change } = createActions({
+    CHANGE: newCondition => newCondition
+})
+
+export default handleActions({
+    [change]: (state, { payload }) => ({
+        ...state,
+        ...payload
+    })
+}, {
+        key: "",
+        sex: -1,
+        page: 1,
+        limit: 10
+});
