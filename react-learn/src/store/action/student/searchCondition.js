@@ -2,7 +2,7 @@
  * 对学生查询条件改变的action的类型
  */
 export const actionTypes = {
-    change: Symbol("change")
+    change: "CHANGE"
 }
 
 /**
