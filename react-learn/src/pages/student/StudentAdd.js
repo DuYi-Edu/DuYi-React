@@ -1,5 +1,5 @@
 import React from 'react'
-import { push } from "connected-react-router"
+import { push } from "../../connected-react-router"
 import { connect } from "react-redux"
 
 function StudentAdd({ onClick }) {
