@@ -28,9 +28,27 @@ export default function (opts = {}) {
      */
     function getOptions() {
         const options = {
-            history: opts.history || createHashHistory()
+            history: opts.history || createHashHistory(),
+            initialState: opts.initialState === undefined ? {} : opts.initialState,
+            onError: opts.onError || (() => { }),
+            onStateChange: opts.onStateChange || (() => { }),
+            onReducer: opts.onReducer || (reducer => (state, action) => reducer(state, action)),
+            onEffect: opts.onEffect,
+            extraReducers: opts.extraReducers || {},
+            extraEnhancers: opts.extraEnhancers || []
         }
 
+        if (opts.onAction) {
+            if (Array.isArray(opts.onAction)) {
+                options.onAction = opts.onAction;
+            }
+            else {
+                options.onAction = [opts.onAction];
+            }
+        }
+        else {
+            options.onAction = [];
+        }
         return options;
     }
 
@@ -95,7 +113,7 @@ export default function (opts = {}) {
 
     function getMiddlewares() {
         const sagaMid = createSagaMiddleware();
-        getMiddlewares.runSaga = function () {
+        getMiddlewares.runSaga = function (store) {
             const arr = [];//保存副作用函数的数组
             for (const model of app._models) {
                 const put = function (action) { //改造put方法，让它与模型关联
@@ -106,22 +124,33 @@ export default function (opts = {}) {
                         arr.push({
                             type: `${model.namespace}/${prop}`,
                             generatorFunc: model.effects[prop],
-                            put
+                            put,
+                            model
                         })
                     }
                 }
             }
             sagaMid.run(function* () {
                 for (const item of arr) {
-                    const func = function* (action) {
-                        yield item.generatorFunc(action, { ...sagaEffects, put: item.put });
+                    let func = function* (action) {
+                        try {
+                            yield item.generatorFunc(action, { ...sagaEffects, put: item.put });
+                        }
+                        catch (err) {
+                            options.onError(err, store.dispatch)
+                        }
+                    }
+                    //该函数可以被进一步封装
+                    if (options.onEffect) {
+                        let oldEffect = func;
+                        func = options.onEffect(oldEffect, sagaEffects, model, item.type)
                     }
                     yield sagaEffects.takeEvery(item.type, func)
                 }
             })
         }
-
-        return composeWithDevTools(applyMiddleware(routerMiddleware(options.history), sagaMid));
+        const mids = [routerMiddleware(options.history), sagaMid, ...options.onAction];
+        return composeWithDevTools(applyMiddleware(...mids));
     }
 
     /**
@@ -133,7 +162,8 @@ export default function (opts = {}) {
             /* eslint-disable */
             ["@@dva"](state = 0, action) {
                 return state;
-            }
+            },
+            ...options.extraReducers
         }
     }
 
@@ -149,10 +179,28 @@ export default function (opts = {}) {
             rootReducerObj[obj.name] = obj.reducer;
         }
         rootReducerObj = { ...rootReducerObj, ...getExtraReducers() }
-        const store = createStore(combineReducers(rootReducerObj), getMiddlewares())
+        let rootReducer = combineReducers(rootReducerObj);
+        let oldReducer = rootReducer;
+        //封装了onStateChange的reducer
+        rootReducer = function (state, action) {
+            const newState = oldReducer(state, action);
+            options.onStateChange(newState);
+            return newState;
+        }
+        //进一步封装onReducer
+        const oldReducer2 = rootReducer;
+        rootReducer = options.onReducer(oldReducer2);
+
+        const newCreateStore = options.extraEnhancers.reduce((fn1, fn2) => {
+            return fn2(fn1);
+        }, createStore)
+
+        const store = newCreateStore(rootReducer,
+            options.initialState,
+            getMiddlewares())
 
         //运行saga
-        getMiddlewares.runSaga();
+        getMiddlewares.runSaga(store);
         window.store = store;
         return store;
     }

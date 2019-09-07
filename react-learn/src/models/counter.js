@@ -15,6 +15,7 @@ export default {
     effects: {
         *asyncIncrease(action, { call, put }) {
             yield call(delay, 1000);
+            // throw new Error("错误，测试")
             yield put({ type: "increase" })
         },
         *asyncDecrease(action, { call, put }) {
