@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "connected-react-router": "^6.5.2",
-    "dva": "^2.4.1",
     "history": "^4.9.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

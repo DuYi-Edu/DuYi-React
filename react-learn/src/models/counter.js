@@ -29,11 +29,11 @@ export default {
                 dispatch({ type: "increase" })
             }
         },
-        resizeDecrease({ dispatch, history }) {
-            history.listen(() => {
-                dispatch({ type: "decrease" })
-            })
-        }
+        // resizeDecrease({ dispatch, history }) {
+        //     history.listen(() => {
+        //         dispatch({ type: "decrease" })
+        //     })
+        // }
     }
 }
 
