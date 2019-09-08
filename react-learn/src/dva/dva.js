@@ -18,10 +18,20 @@ export default function (opts = {}) {
         _models: [], //记录已经定义的模型
         router,
         _router: null, //用于记录路由函数
-        start
+        start,
+        use
     }
-    const options = getOptions();
+    let options = getOptions();
     return app;
+
+
+    /**
+     * 使用dva插件
+     * @param {*} plugin 配置对象
+     */
+    function use(plugin) {
+        options = { ...options, ...plugin }
+    }
 
     /**
      * 得到配置
@@ -132,6 +142,7 @@ export default function (opts = {}) {
             }
             sagaMid.run(function* () {
                 for (const item of arr) {
+                    /* eslint-disable */
                     let func = function* (action) {
                         try {
                             yield item.generatorFunc(action, { ...sagaEffects, put: item.put });
@@ -143,7 +154,7 @@ export default function (opts = {}) {
                     //该函数可以被进一步封装
                     if (options.onEffect) {
                         let oldEffect = func;
-                        func = options.onEffect(oldEffect, sagaEffects, model, item.type)
+                        func = options.onEffect(oldEffect, sagaEffects, item.model, item.type)
                     }
                     yield sagaEffects.takeEvery(item.type, func)
                 }
