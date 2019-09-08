@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "dva": "^2.4.1",
+    "dva-loading": "^3.0.14",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"

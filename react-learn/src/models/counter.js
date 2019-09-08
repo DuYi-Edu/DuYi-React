@@ -21,19 +21,6 @@ export default {
             yield call(delay, 1000);
             yield put({ type: "decrease" })
         }
-    },
-    subscriptions: {
-        resizeIncrease({ dispatch }) {
-            //订阅窗口尺寸变化，每次变化让数字增加
-            window.onresize = () => {
-                dispatch({ type: "increase" })
-            }
-        },
-        resizeDecrease({ dispatch, history }) {
-            history.listen(() => {
-                dispatch({ type: "decrease" })
-            })
-        }
     }
 }
 
