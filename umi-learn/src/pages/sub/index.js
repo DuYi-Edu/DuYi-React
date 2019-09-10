@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function page1() {
+export default function index(props) {
     return (
         <div>
-            <h1>页面1</h1>
+            <h1>sub的首页</h1>
         </div>
     )
 }
