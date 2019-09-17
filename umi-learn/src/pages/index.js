@@ -1,3 +1,7 @@
+/**
+ * Routes:
+ *      - src/router/PrivateRouter
+ */
 import React from 'react'
 
 export default function index() {

@@ -3,8 +3,9 @@ import { Router as DefaultRouter, Route, Switch } from 'react-router-dom';
 import dynamic from 'umi/dynamic';
 import renderRoutes from 'umi/lib/renderRoutes';
 import history from '@tmp/history';
+import { routerRedux } from 'dva';
 
-const Router = DefaultRouter;
+const Router = routerRedux.ConnectedRouter;
 
 const routes = [
   {
@@ -15,6 +16,7 @@ const routes = [
         path: '/',
         exact: true,
         component: require('../index.js').default,
+        Routes: [require('../../router/PrivateRouter').default],
       },
       {
         path: '/login',

@@ -1,9 +1,10 @@
 import React from 'react'
+import LoginFormContainer from "../components/containers/LoginFormContainer"
 
 export default function login() {
     return (
         <div>
-            <h1>登录页</h1>
+            <LoginFormContainer />
         </div>
     )
 }
