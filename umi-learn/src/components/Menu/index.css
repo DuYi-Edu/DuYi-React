@@ -1,0 +1,24 @@
+.menu{
+    background: #222;
+    color: #fff;
+    height: 50px;
+    padding: 0 30px;
+}
+
+.title {
+    float: left;
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.loginInfo {
+    float: right;
+}
+
+.loginInfo span{
+    margin-left: 20px;
+}
+
+.loginInfo button{
+    margin-left: 20px;
+}

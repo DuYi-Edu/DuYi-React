@@ -1,0 +1,20 @@
+.nav{
+    height: 100%;
+    background: #333;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: #fff;
+    padding: 30px 0;
+    box-sizing: border-box;
+}
+
+.nav li{
+    height: 35px;
+    line-height: 35px;
+    padding: 0 20px;
+}
+
+.nav li a:hover, .nav li a.active{
+    color: rgb(221, 233, 112);
+}

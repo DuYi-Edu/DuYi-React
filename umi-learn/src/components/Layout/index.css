@@ -1,0 +1,27 @@
+.header {
+    position: fixed;
+    height: 50px;
+    line-height: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.main {
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.left{
+    float: left;
+    width: 200px;
+    height: 100%;
+}
+
+.right{
+    overflow: auto;
+    height: 100%;
+}

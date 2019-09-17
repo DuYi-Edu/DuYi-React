@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function a() {
+export default function $id() {
     return (
         <div>
-            <h1>页面 sub/a</h1>
+            <h1>修改学生页</h1>
         </div>
     )
 }

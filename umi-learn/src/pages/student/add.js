@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function b() {
+export default function add() {
     return (
         <div>
-            <h1>页面 sub/sub/b</h1>
+            <h1>添加学生页</h1>
         </div>
     )
 }
