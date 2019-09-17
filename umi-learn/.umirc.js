@@ -8,5 +8,11 @@ export default {
                 exclude: [/.*\/models\/.*/, /.*\/model\.js/]
             }
         }]
-    ]
+    ],
+    // proxy: { //相当于webpack中的devServer中的proxy配置
+    //     "/api": {
+    //         target: "http://api.duyiedu.com",
+    //         changeOrigin: true //修改源
+    //     }
+    // }
 }

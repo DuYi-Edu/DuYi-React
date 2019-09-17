@@ -12,6 +12,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "mockjs": "^1.0.1-beta3",
         "umi-plugin-react": "^1.9.19"
     }
 }
