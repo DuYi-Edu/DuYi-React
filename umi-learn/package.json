@@ -12,6 +12,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "redux-logger": "^3.0.6",
         "umi-plugin-react": "^1.9.19"
     }
 }
