@@ -1,0 +1,16 @@
+{
+    "name": "antd-learn",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "umi dev",
+        "build": "umi build"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "umi-plugin-react": "^1.10.1"
+    }
+}

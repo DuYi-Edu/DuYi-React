@@ -3,45 +3,27 @@ import { Router as DefaultRouter, Route, Switch } from 'react-router-dom';
 import dynamic from 'umi/dynamic';
 import renderRoutes from 'umi/lib/renderRoutes';
 import history from '@tmp/history';
-import { routerRedux } from 'dva';
 
-const Router = routerRedux.ConnectedRouter;
+const Router = DefaultRouter;
 
 const routes = [
   {
+    path: '/article',
+    exact: true,
+    component: require('../article.js').default,
+  },
+  {
     path: '/',
-    component: require('../../layouts/index.js').default,
-    routes: [
-      {
-        path: '/',
-        exact: true,
-        component: require('../index.js').default,
-        _title: 'umi-learn2',
-        _title_default: 'umi-learn2',
-      },
-      {
-        component: () =>
-          React.createElement(
-            require('D:/repository/React/源码/umi-learn2/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
-              .default,
-            { pagesPath: 'src/pages', hasRoutesInConfig: false },
-          ),
-        _title: 'umi-learn2',
-        _title_default: 'umi-learn2',
-      },
-    ],
-    _title: 'umi-learn2',
-    _title_default: 'umi-learn2',
+    exact: true,
+    component: require('../index.js').default,
   },
   {
     component: () =>
       React.createElement(
-        require('D:/repository/React/源码/umi-learn2/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+        require('C:/Users/kevin/AppData/Local/Yarn/Data/global/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
           .default,
         { pagesPath: 'src/pages', hasRoutesInConfig: false },
       ),
-    _title: 'umi-learn2',
-    _title_default: 'umi-learn2',
   },
 ];
 window.g_routes = routes;

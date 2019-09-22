@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import findRoute, {
   getUrlQuery,
-} from 'D:/repository/React/源码/umi-learn2/node_modules/umi-build-dev/lib/findRoute.js';
+} from 'C:/Users/kevin/AppData/Local/Yarn/Data/global/node_modules/umi-build-dev/lib/findRoute.js';
 
 // runtime plugins
 const plugins = require('umi/_runtimePlugin');
@@ -19,14 +19,8 @@ plugins.init({
     'onRouteChange',
     'modifyInitialProps',
     'initialProps',
-    'dva',
   ],
 });
-plugins.use(require('../../../node_modules/umi-plugin-dva/lib/runtime'));
-plugins.use(require('@/app'));
-
-const app = require('@tmp/dva')._onCreate();
-window.g_app = app;
 
 // render
 let clientRender = async () => {
@@ -148,8 +142,6 @@ if (!__IS_BROWSER) {
 
 export { ReactDOMServer };
 export default (__IS_BROWSER ? null : serverRender);
-
-require('../../global.css');
 
 // hot module replacement
 if (__IS_BROWSER && module.hot) {
