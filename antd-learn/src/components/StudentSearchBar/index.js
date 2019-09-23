@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import { Input, Row, Col, Radio, Button } from "antd"
 
+const Search = Input.Search;
 export default class StudentSearchBar extends Component {
 
     constructor(props) {
@@ -11,31 +13,35 @@ export default class StudentSearchBar extends Component {
         this.state = Object.assign({}, def, this.props.defaultValue);
     }
 
-    handleRadioChange = e => {
-        this.setState({
-            sex: +e.target.value
-        })
-    }
-
     handleSearch = () => {
         //抛出事件
-        if(this.props.onSearch){
+        if (this.props.onSearch) {
             this.props.onSearch(this.state);
         }
     }
 
     render() {
         return (
-            <div>
-                关键字：
-                <input type="text" value={this.state.key}
-                    onChange={e => this.setState({ key: e.target.value })}
-                />
-                性别：
-                <label><input checked={this.state.sex === -1} type="radio" name="sex" value={-1} onChange={this.handleRadioChange} />不限</label>
-                <label><input checked={this.state.sex === 0} type="radio" name="sex" value={0} onChange={this.handleRadioChange} />男</label>
-                <label><input checked={this.state.sex === 1} type="radio" name="sex" value={1} onChange={this.handleRadioChange} />女</label>
-                <button onClick={this.handleSearch}>查询</button>
+            <div style={{
+                marginBottom:"20px"
+            }}>
+                <Row gutter={10} type="flex" justify="start">
+                    <Col>
+                        <Search onSearch={this.handleSearch} addonBefore="关键字" value={this.state.key} onChange={e => this.setState({ key: e.target.value })} />
+                    </Col>
+                    <Col>
+                        <Radio.Group onChange={(e) => {
+                            this.setState({
+                                sex: e.target.value
+                            })
+                        }} value={this.state.sex}>
+                            <Radio.Button value={-1}>不限</Radio.Button>
+                            <Radio.Button value={0}>男</Radio.Button>
+                            <Radio.Button value={1}>女</Radio.Button>
+                        </Radio.Group>
+                    </Col>
+                    <Button type="primary" onClick={this.handleSearch}>查询</Button>
+                </Row>
             </div>
         )
     }

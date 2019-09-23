@@ -69,6 +69,7 @@ export default {
         *fetchStudents(action, { put, call, select }) {
             //拿到仓库中当前的搜索条件
             const condition = yield select(state => state.students.condition);
+            yield Delay(1000);
             const result = yield call(searchStudents, condition)
             yield put({
                 type: "setResult",
@@ -79,4 +80,12 @@ export default {
             })
         }
     }
+}
+
+function Delay(mili) {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve();
+        }, mili);
+    })
 }

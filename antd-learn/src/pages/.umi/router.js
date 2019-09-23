@@ -36,6 +36,11 @@ const routes = [
         Routes: [require('../../router/PrivateRouter').default],
       },
       {
+        path: '/student/:id',
+        exact: true,
+        component: require('../student/$id.js').default,
+      },
+      {
         component: () =>
           React.createElement(
             require('C:/Users/kevin/AppData/Local/Yarn/Data/global/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')

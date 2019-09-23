@@ -1,32 +1,64 @@
 import React from 'react'
-import styles from "./index.css"
-import { Link } from "umi"
-export default function StudentTable(props) {
-    const trs = props.stus.map(s => <tr key={s.id}>
-        <td>{s.sNo}</td>
-        <td>{s.name}</td>
-        <td>{s.sex === 1 ? "女" : "男"}</td>
-        <td>{s.birth}</td>
-        <td>{s.email}</td>
-        <td>
-            <Link to={`/student/${s.sNo}`}>详情</Link>
-        </td>
-    </tr>)
+import withRouter from "umi/withRouter"
+import { Table, Typography, Button } from "antd"
+const { Text } = Typography;
+function StudentTable(props) {
+    const columns = [
+        {
+            title: "学号",
+            dataIndex: "sNo"
+        },
+        {
+            title: '姓名',
+            dataIndex: 'name',
+            render(name) {
+                return <Text strong>{name}</Text>
+            }
+        },
+        {
+            title: '性别',
+            dataIndex: 'sex',
+            render(sex) {
+                return sex === 1 ? "女" : "男";
+            }
+        },
+        {
+            title: '出生日期',
+            dataIndex: 'birth'
+        },
+        {
+            title: '住址',
+            dataIndex: 'address'
+        },
+        {
+            title: "操作",
+            dataIndex: "id",
+            render(id) {
+                return <Button type="link"
+                    onClick={() => {
+                        props.history.push(`/student/${id}`);
+                    }}
+                >详情</Button>
+            }
+        }
+    ];
     return (
-        <table className={styles.tab}>
-            <thead>
-                <tr>
-                    <th>学号</th>
-                    <th>姓名</th>
-                    <th>性别</th>
-                    <th>出生年份</th>
-                    <th>邮箱</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody>
-                {trs}
-            </tbody>
-        </table>
+        <Table
+            dataSource={props.stus}
+            rowKey="id"
+            columns={columns}
+            pagination={{
+                current: props.current,
+                total: props.total,
+                pageSize: props.pageSize,
+                showQuickJumper: true,
+                onChange: props.onPageChange
+            }}
+            loading={props.loading}
+        >
+
+        </Table>
     )
 }
+
+export default withRouter(StudentTable)

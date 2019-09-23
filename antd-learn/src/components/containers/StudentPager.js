@@ -1,15 +1,15 @@
 import { connect } from "dva"
-import Pager from "../Pager"
+import { Pagination } from "antd"
 
 const mapStateToProps = state => ({
     current: state.students.condition.page,
     total: state.students.result.total,
-    limit: state.students.condition.limit,
-    panelNumber: 5
+    pageSize: state.students.condition.limit,
+    showQuickJumper: true
 })
 
 const mapDispatchToProps = dispatch => ({
-    onPageChange(newPage) {
+    onChange(newPage) {
         //重新设置条件
         dispatch({
             type: "students/setCondition",
@@ -20,4 +20,4 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Pager);
+export default connect(mapStateToProps, mapDispatchToProps)(Pagination);
