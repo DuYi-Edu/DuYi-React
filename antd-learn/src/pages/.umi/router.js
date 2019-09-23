@@ -3,19 +3,47 @@ import { Router as DefaultRouter, Route, Switch } from 'react-router-dom';
 import dynamic from 'umi/dynamic';
 import renderRoutes from 'umi/lib/renderRoutes';
 import history from '@tmp/history';
+import { routerRedux } from 'dva';
 
-const Router = DefaultRouter;
+const Router = routerRedux.ConnectedRouter;
 
 const routes = [
   {
-    path: '/article',
-    exact: true,
-    component: require('../article.js').default,
-  },
-  {
     path: '/',
-    exact: true,
-    component: require('../index.js').default,
+    component: require('../../layouts/index.js').default,
+    routes: [
+      {
+        path: '/',
+        exact: true,
+        component: require('../index.js').default,
+        Routes: [require('../../router/PrivateRouter').default],
+      },
+      {
+        path: '/login',
+        exact: true,
+        component: require('../login.js').default,
+      },
+      {
+        path: '/student/add',
+        exact: true,
+        component: require('../student/add.js').default,
+        Routes: [require('../../router/PrivateRouter').default],
+      },
+      {
+        path: '/student',
+        exact: true,
+        component: require('../student/index.js').default,
+        Routes: [require('../../router/PrivateRouter').default],
+      },
+      {
+        component: () =>
+          React.createElement(
+            require('C:/Users/kevin/AppData/Local/Yarn/Data/global/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+              .default,
+            { pagesPath: 'src/pages', hasRoutesInConfig: false },
+          ),
+      },
+    ],
   },
   {
     component: () =>
