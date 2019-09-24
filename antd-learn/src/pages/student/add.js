@@ -3,11 +3,12 @@
  *      - src/router/PrivateRouter
  */
 import React from 'react'
+import StudentForm from "../../components/StudentForm"
 
 export default function add() {
     return (
         <div>
-            <h1>添加学生页</h1>
+            <StudentForm />
         </div>
     )
 }

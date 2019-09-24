@@ -21,7 +21,6 @@ export function _onCreate() {
   });
   
   app.model({ namespace: 'loginUser', ...(require('D:/repository/React/源码/antd-learn/src/models/loginUser.js').default) });
-app.model({ namespace: 'students_copy', ...(require('D:/repository/React/源码/antd-learn/src/models/students_copy.js').default) });
 app.model({ namespace: 'students', ...(require('D:/repository/React/源码/antd-learn/src/models/students.js').default) });
   return app;
 }
