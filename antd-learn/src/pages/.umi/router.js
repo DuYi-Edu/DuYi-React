@@ -39,6 +39,7 @@ const routes = [
         path: '/student/:id',
         exact: true,
         component: require('../student/$id.js').default,
+        Routes: [require('../../router/PrivateRouter').default],
       },
       {
         component: () =>

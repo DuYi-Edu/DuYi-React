@@ -1,12 +1,14 @@
+/**
+ * Routes:
+ *      - src/router/PrivateRouter
+ */
 import React from 'react'
+import StudentForm from "../../components/StudentForm"
 
-export default function $id({match}) {
+export default function $id(props) {
     return (
         <div>
-            <h1>学生详情页</h1>
-            <p>
-                学生的id：{match.params.id}
-            </p>
+            <StudentForm sNo={props.match.params.id}/>
         </div>
     )
 }
