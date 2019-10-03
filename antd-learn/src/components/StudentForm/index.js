@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Spin, message, Input, Button, Radio, Switch, Select } from "antd"
 import { addStudent, updateStudent, getStudentBySNo } from "@/services/student"
+import Avatar from "../Avatar"
 import withRouter from "umi/withRouter"
 
 const spanConfig = {
@@ -93,6 +94,7 @@ class StudentForm extends Component {
         e.preventDefault(); //阻止表单默认行为：提交
         this.props.form.validateFields((err, values) => {
             if (!err) {
+                // console.log(values)
                 //验证通过
                 if (this.props.sNo) {
                     //修改学生
@@ -110,6 +112,9 @@ class StudentForm extends Component {
         return (
             <Spin spinning={this.state.isLoading} tip="提交中，请稍后...">
                 <Form {...spanConfig} onSubmit={this.handleSubmit}>
+                    <Form.Item label="头像">
+                        {getFieldDecorator("avatar")(<Avatar disabled={this.props.sNo !== undefined} />)}
+                    </Form.Item>
                     <Form.Item label="学号">
                         {getFieldDecorator("sNo", {
                             rules: [

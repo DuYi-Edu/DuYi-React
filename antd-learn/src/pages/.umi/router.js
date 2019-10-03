@@ -42,6 +42,11 @@ const routes = [
         Routes: [require('../../router/PrivateRouter').default],
       },
       {
+        path: '/upload-test',
+        exact: true,
+        component: require('../upload-test.js').default,
+      },
+      {
         component: () =>
           React.createElement(
             require('C:/Users/kevin/AppData/Local/Yarn/Data/global/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
