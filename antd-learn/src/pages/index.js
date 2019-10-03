@@ -4,8 +4,7 @@
  */
 import React from 'react'
 
-export default function index(props, context) {
-    console.log(props, context)
+export default function index(props) {
     return (
         <div>
             <h1>欢迎页</h1>
