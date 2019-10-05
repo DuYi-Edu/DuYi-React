@@ -13,6 +13,11 @@ const routes = [
     component: require('../../layouts/index.js').default,
     routes: [
       {
+        path: '/cascade-test',
+        exact: true,
+        component: require('../cascade-test.js').default,
+      },
+      {
         path: '/',
         exact: true,
         component: require('../index.js').default,
