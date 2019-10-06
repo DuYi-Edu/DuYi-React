@@ -3,7 +3,15 @@ export default {
         ["umi-plugin-react", {
             antd: true,
             dva: true
-        }]
+        }],
+        [
+            "umi-plugin-locale", {
+                locale: {
+                    enable: true,
+                    default: "zh-CN"
+                }
+            }
+        ]
     ],
     theme: {
         "primary-color": "#008c8c"

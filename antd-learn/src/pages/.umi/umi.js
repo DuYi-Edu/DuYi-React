@@ -19,6 +19,7 @@ plugins.init({
     'onRouteChange',
     'modifyInitialProps',
     'initialProps',
+    'locale',
     'dva',
   ],
 });

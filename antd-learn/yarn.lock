@@ -4440,6 +4440,21 @@ umi-plugin-locale@2.10.1:
     react-intl "2.7.2"
     umi-utils "1.6.0"
 
+umi-plugin-locale@^2.11.0:
+  version "2.11.0"
+  resolved "https://registry.npm.taobao.org/umi-plugin-locale/download/umi-plugin-locale-2.11.0.tgz?cache=0&sync_timestamp=1569751955429&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fumi-plugin-locale%2Fdownload%2Fumi-plugin-locale-2.11.0.tgz#8e3ba2ef33084adf89d9233629ccedeccb9f6005"
+  integrity sha1-jjui7zMISt+J2SM2Kczt7MufYAU=
+  dependencies:
+    "@ant-design/create-react-context" "0.2.4"
+    globby "7.1.1"
+    intl "1.2.5"
+    lodash.groupby "4.6.0"
+    moment "2.x"
+    mustache "3.0.1"
+    prop-types "15.6.2"
+    react-intl "2.7.2"
+    umi-utils "1.7.0"
+
 umi-plugin-polyfills@1.4.2:
   version "1.4.2"
   resolved "https://registry.npm.taobao.org/umi-plugin-polyfills/download/umi-plugin-polyfills-1.4.2.tgz#ae13ff99efd7c8b1513dd6632d792b645aa02853"
@@ -4492,6 +4507,17 @@ umi-utils@1.6.0:
   version "1.6.0"
   resolved "https://registry.npm.taobao.org/umi-utils/download/umi-utils-1.6.0.tgz#101d054068e3fdd65599c4e5af7c96e149cc70c3"
   integrity sha1-EB0FQGjj/dZVmcTlr3yW4UnMcMM=
+  dependencies:
+    chalk "2.4.2"
+    is-url "1.2.4"
+    node-fetch "2.6.0"
+    prettier "1.15.3"
+    slash2 "2.0.0"
+
+umi-utils@1.7.0:
+  version "1.7.0"
+  resolved "https://registry.npm.taobao.org/umi-utils/download/umi-utils-1.7.0.tgz#853b3832871f796d5443dbfb1410bb156aefa7a2"
+  integrity sha1-hTs4MocfeW1UQ9v7FBC7FWrvp6I=
   dependencies:
     chalk "2.4.2"
     is-url "1.2.4"

@@ -3,6 +3,7 @@ import { Router as DefaultRouter, Route, Switch } from 'react-router-dom';
 import dynamic from 'umi/dynamic';
 import renderRoutes from 'umi/lib/renderRoutes';
 import history from '@tmp/history';
+import RendererWrapper0 from 'D:/repository/React/源码/antd-learn/src/pages/.umi/LocaleWrapper.jsx';
 import { routerRedux } from 'dva';
 
 const Router = routerRedux.ConnectedRouter;
@@ -12,6 +13,11 @@ const routes = [
     path: '/',
     component: require('../../layouts/index.js').default,
     routes: [
+      {
+        path: '/carousel-test',
+        exact: true,
+        component: require('../carousel-test.js').default,
+      },
       {
         path: '/cascade-test',
         exact: true,
@@ -27,6 +33,11 @@ const routes = [
         path: '/login',
         exact: true,
         component: require('../login.js').default,
+      },
+      {
+        path: '/other',
+        exact: true,
+        component: require('../other.js').default,
       },
       {
         path: '/student/add',
@@ -102,6 +113,10 @@ export default class RouterWrapper extends React.Component {
 
   render() {
     const props = this.props || {};
-    return <Router history={history}>{renderRoutes(routes, props)}</Router>;
+    return (
+      <RendererWrapper0>
+        <Router history={history}>{renderRoutes(routes, props)}</Router>
+      </RendererWrapper0>
+    );
   }
 }
