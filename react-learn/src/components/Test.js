@@ -25,6 +25,7 @@ export default class A extends Component {
 }
 
 function B(props) {
+    console.log("B组件重新渲染了")
     return <div>
         B组件：{props.n}
         <C n={props.n} />
@@ -32,6 +33,7 @@ function B(props) {
 }
 
 function C(props) {
+    console.log("C组件重新渲染了")
     return <div>
         C组件：{props.n}
     </div>
