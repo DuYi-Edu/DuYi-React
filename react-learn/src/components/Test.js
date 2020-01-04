@@ -2,14 +2,15 @@ import React, { Component } from 'react'
 
 export default class A extends Component {
     state = {
-        n: 123
+        n: 123,
+        b: 100
     }
 
     constructor(props) {
         super(props);
         setInterval(() => {
             this.setState({
-                n: this.state.n - 1
+                n: this.state.b - 1
             })
         }, 1000);
     }
